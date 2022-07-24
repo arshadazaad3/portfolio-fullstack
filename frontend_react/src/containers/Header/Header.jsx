@@ -5,15 +5,26 @@ import { images } from '../../constants';
 import './Header.scss';
 
 export default function Header() {
+  const scaleVariants = {
+    whileInView: {
+      scale: [0, 1],
+      opacity: [0, 1],
+      transition: {
+        duration: 1,
+        ease: 'easeInOut',
+      },
+    },
+  };
+
   return (
-    <div className="app__header app__flex">
+    <div id="home" className="app__header app__flex">
       <motion.div
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
         className="app__header-info"
       >
-        <div className="app__header-batch">
-          <div className="batch-cmb app__flex">
+        <div className="app__header-badge">
+          <div className="badge-cmp app__flex">
             <span>👋</span>
             <div style={{ marginLeft: 20 }}>
               <p className="p-text">Hello, I am</p>
@@ -21,7 +32,7 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="tag-cmb app__flex">
+          <div className="tag-cmp app__flex">
             <p className="p-text">Web Developer</p>
             <p className="p-text">Freelancer</p>
           </div>
@@ -33,9 +44,9 @@ export default function Header() {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__header-img"
       >
-        <img src={images.profile} alt="profile-bg" />
+        <img src={images.profile} alt="profile_bg" />
         <motion.img
-          whileInView={{ opacity: [0, 1] }}
+          whileInView={{ scale: [0, 1] }}
           transition={{ duration: 1, ease: 'easeInOut' }}
           src={images.circle}
           alt="profile_circle"
@@ -43,7 +54,17 @@ export default function Header() {
         />
       </motion.div>
 
-      <motion.div></motion.div>
+      <motion.div
+        className="app__header-circles"
+        variant={scaleVariants}
+        whileInView={scaleVariants.whileInView}
+      >
+        {[images.flutter, images.sass, images.redux].map((circle, index) => (
+          <div className="circle-cmp app__flex" key={`circle-${index}`}>
+            <img src={circle} alt="circle" />
+          </div>
+        ))}
+      </motion.div>
     </div>
   );
 }
