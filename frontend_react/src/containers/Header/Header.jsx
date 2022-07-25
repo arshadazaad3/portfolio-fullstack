@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+import { AppWrap } from '../../hoc';
 import { images } from '../../constants';
 import './Header.scss';
 
-export default function Header() {
+function Header() {
   const scaleVariants = {
     whileInView: {
       scale: [0, 1],
@@ -68,3 +69,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default AppWrap(Header, 'home');
