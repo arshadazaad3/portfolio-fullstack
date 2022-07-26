@@ -1,0 +1,5 @@
+Deploy Front-End
+
+cd frontend_react
+yarn build
+copy paste build folder to netlify
